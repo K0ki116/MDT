@@ -18,8 +18,8 @@ class NODDI(CompositeModelTemplate):
               (Weight(w_ec) * NODDI_EC))
     '''
 
-    fixes = {'NODDI_IC.d': 1.7e-9,
-             'NODDI_EC.d': 1.7e-9,
+    fixes = {'NODDI_IC.d': 1.1e-9,
+             'NODDI_EC.d': 1.1e-9,
              'Ball.d': 3.0e-9,
              'NODDI_EC.dperp0': 'NODDI_EC.d * w_ec.w / (w_ec.w + w_ic.w)',
              'NODDI_EC.kappa': 'NODDI_IC.kappa',
@@ -47,8 +47,8 @@ class NODDI_ZhangFormulation(CompositeModelTemplate):
 
     enforce_weights_sum_to_one = False
 
-    fixes = {'NODDI_IC.d': 1.7e-9,
-             'NODDI_EC.d': 1.7e-9,
+    fixes = {'NODDI_IC.d': 1.1e-9,
+             'NODDI_EC.d': 1.1e-9,
              'Ball.d': 3.0e-9,
              'fiso_neg.w': '1 - fiso.w',
              'ficvf_neg.w': '1 - ficvf.w',
@@ -69,7 +69,7 @@ class NODDI_Fixed_IC_EC_LT(CompositeModelTemplate):
               (Weight(w_ec) * NODDI_EC))
     '''
     fixes = {
-             'NODDI_IC.d': 1.7e-9,
+             'NODDI_IC.d': 1.1e-9,
              'Ball.d': 3.0e-9,
              'NODDI_EC.dperp0': 'NODDI_EC.d * w_ec.w / (w_ec.w + w_ic.w)',
              'NODDI_EC.kappa': 'NODDI_IC.kappa',
@@ -145,8 +145,8 @@ class BinghamNODDI_r1(CompositeModelTemplate):
               (Weight(w_en0) * BinghamNODDI_EN(BinghamNODDI_EN0)))
     '''
     fixes = {
-        'BinghamNODDI_IN0.d': 1.7e-9,
-        'BinghamNODDI_EN0.d': 1.7e-9,
+        'BinghamNODDI_IN0.d': 1.1e-9,
+        'BinghamNODDI_EN0.d': 1.1e-9,
         'Ball.d': 3.0e-9,
         'BinghamNODDI_EN0.dperp0': 'BinghamNODDI_EN0.d * w_en0.w / (w_en0.w + w_in0.w)',
         'BinghamNODDI_EN0.k1': 'BinghamNODDI_IN0.k1',
@@ -171,8 +171,8 @@ class BinghamNODDI_r2(CompositeModelTemplate):
     '''
     fixes = {
         'Ball.d': 3.0e-9,
-        'BinghamNODDI_IN0.d': 1.7e-9,
-        'BinghamNODDI_EN0.d': 1.7e-9,
+        'BinghamNODDI_IN0.d': 1.1e-9,
+        'BinghamNODDI_EN0.d': 1.1e-9,
 
         'BinghamNODDI_EN0.dperp0': 'BinghamNODDI_EN0.d * w_en0.w / (w_en0.w + w_in0.w)',
         'BinghamNODDI_EN0.k1': 'BinghamNODDI_IN0.k1',
@@ -181,8 +181,8 @@ class BinghamNODDI_r2(CompositeModelTemplate):
         'BinghamNODDI_EN0.phi':   'BinghamNODDI_IN0.phi',
         'BinghamNODDI_EN0.psi':   'BinghamNODDI_IN0.psi',
 
-        'BinghamNODDI_IN1.d': 1.7e-9,
-        'BinghamNODDI_EN1.d': 1.7e-9,
+        'BinghamNODDI_IN1.d': 1.1e-9,
+        'BinghamNODDI_EN1.d': 1.1e-9,
         'BinghamNODDI_EN1.dperp0': 'BinghamNODDI_EN1.d * w_en1.w / (w_en1.w + w_in1.w)',
         'BinghamNODDI_EN1.k1': 'BinghamNODDI_IN1.k1',
         'BinghamNODDI_EN1.kw': 'BinghamNODDI_IN1.kw',
