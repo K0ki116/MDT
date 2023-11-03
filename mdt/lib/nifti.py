@@ -81,9 +81,9 @@ def get_all_nifti_data(directory, map_names=None, deferred=True):
     """
     proxies = load_all_niftis(directory, map_names=map_names)
     if deferred:
-        return DeferredActionDict(lambda _, item: item.get_data(), proxies)
+        return DeferredActionDict(lambda _, item: item.get_fdata(), proxies)
     else:
-        return {k: v.get_data() for k, v in proxies.items()}
+        return {k: v.get_fdata() for k, v in proxies.items()}
 
 
 def write_nifti(data, output_fname, header=None, affine=None, use_data_dtype=True, **kwargs):
@@ -310,16 +310,16 @@ def nifti_info_decorate_array(array, nifti_info=None):
 
 
 def nifti_info_decorate_nibabel_image(nifti_obj):
-    """Decorate the nibabel image container such that the ``get_data`` method returns a NiftiInfoDecorated ndarray.
+    """Decorate the nibabel image container such that the ``get_fdata`` method returns a NiftiInfoDecorated ndarray.
 
     Args:
         nifti_obj: a nibabel nifti object
     """
-    original_function = nifti_obj.get_data
+    original_function = nifti_obj.get_fdata
 
-    def get_data(self, *args, **kwargs):
+    def get_fdata(self, *args, **kwargs):
         data = original_function(*args, **kwargs)
         return nifti_info_decorate_array(data, NiftiInfo(header=self.header, filepath=self.get_filename()))
 
-    nifti_obj.get_data = get_data.__get__(nifti_obj, type(nifti_obj))
+    nifti_obj.get_fdata = get_fdata.__get__(nifti_obj, type(nifti_obj))
     return nifti_obj
